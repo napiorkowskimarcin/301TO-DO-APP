@@ -21,6 +21,10 @@ db.once("open", function () {
 //start app
 const app = express();
 
+// const {
+//   allowInsecurePrototypeAccess,
+// } = require("@handlebars/allow-prototype->access");
+
 //allow bodyParser to recognize a body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

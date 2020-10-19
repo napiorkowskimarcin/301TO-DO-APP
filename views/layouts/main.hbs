@@ -13,17 +13,22 @@
     <div class="nav-wrapper teal lighten-2">
       <a href="#" class="brand-logo right">Logo</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
-        <li><a href="#">Add a note</a></li>
-        <li><a href="#">Look at it</a></li>
+        <li><a href="/">Add a note</a></li>
+        <li><a href="/tasks">Look at it</a></li>
         <li><a href="#">Operations</a></li>
       </ul>
     </div>
   </nav>
+  <div class="divider"></div>
   <div class="container">
 
     {{{body}}}
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script>
+      M.FormSelect.init(document.querySelector('#status'))
+      M.FormSelect.init(document.querySelector('#taskAuthor'))
+    </script>
 </body>
 </html>

@@ -9,12 +9,28 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-  console.log(req.body);
-  const taskData = new Task(req.body);
-  taskData.save();
-  res.render("index", {
-    layout: "main",
-  });
+  try {
+    const data = req.body;
+    new Task(data).save();
+    res.render("index-succes", {
+      layout: "main",
+      data,
+    });
+  } catch (error) {
+    console.error(error);
+    res.render("error/500", { layout: "main" });
+  }
+});
+
+router.get("/tasks", async (req, res, next) => {
+  try {
+    const Data = await Task.find().lean();
+    console.log(Data);
+    res.render("tasks", { layout: "main", Data });
+  } catch (error) {
+    console.error(error);
+    res.render("error/500", { layout: "main" });
+  }
 });
 
 module.exports = router;

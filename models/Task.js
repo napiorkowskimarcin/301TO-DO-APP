@@ -8,11 +8,17 @@ const taskSchema = new Schema({
   },
   taskAuthor: {
     type: String,
-    required: [true, "Author is required, please"],
+    default: "Marcin",
+    enum: ["Marcin", "Oktawia", "Oliwia", "Michal"],
   },
   taskBody: {
     type: String,
     required: [true, "Body cannot be empty, please"],
+  },
+  status: {
+    type: String,
+    default: "todo!",
+    enum: ["todo!", "ready"],
   },
   created: {
     type: Date,
