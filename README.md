@@ -8,7 +8,7 @@
 create error handling.
 
 ### Planned to use:
--node.js
--express.js
--mongoose
--express handlebars
+- node.js
+- express.js
+- mongoose
+- express handlebars
