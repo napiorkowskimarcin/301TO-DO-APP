@@ -7,6 +7,7 @@ const config = require("./config/config");
 const exphbs = require("express-handlebars");
 //not able to acces Data.taskName etc in edit
 const Handlebars = require("handlebars");
+const methodOverride = require("method-override");
 
 //set a port
 const PORT = 3000 || process.env.PORT;
@@ -29,6 +30,17 @@ db.once("open", function () {
 //start app
 const app = express();
 
+app.use(
+  methodOverride(function (req, res) {
+    if (req.body && typeof req.body === "object" && "_method" in req.body) {
+      // look in urlencoded POST bodies and delete it
+      let method = req.body._method;
+      delete req.body._method;
+      return method;
+    }
+  })
+);
+
 //allow bodyParser to recognize a body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -38,7 +50,7 @@ app.use(bodyParser.json());
 // app.engine(".hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
 // app.set("view engine", ".hbs");
 
-//load handlebars
+//load handlebars and set .handlebars to .hbs
 app.engine(
   ".hbs",
   exphbs({
@@ -57,4 +69,5 @@ app.use("/", require("./routes/index"));
 app.use("/tasks", require("./routes/tasks"));
 app.use("/edit", require("./routes/edit"));
 
+//start listening
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`));

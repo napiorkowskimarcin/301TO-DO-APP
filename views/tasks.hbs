@@ -1,11 +1,12 @@
 <table>
 <thead> 
     <tr>
-        <th>Task Name</th>
-        <th>Task Author</th>
-        <th>Task Body</th>
-        <th>Status</th>
-        <th>Edit</th>
+        <th class="center-align">Task Name</th>
+        <th class="center-align">Task Author</th>
+        <th class="center-align">Task Body</th>
+        <th class="center-align">Status</th>
+        <th class="center-align">Edit</th>
+        <th class="center-align">Delete</th>
         
     </tr>
 </thead>
@@ -18,6 +19,7 @@
     <td>{{taskBody}}</td>
     <td>{{status}}</td>
     <td><a href="/edit/{{_id}}">Edit</a></td>
+    <td><a href="/delete/{{_id}}">Delete</a></td>
     
 </tr>
 </tbody>
