@@ -5,9 +5,14 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const config = require("./config/config");
 const exphbs = require("express-handlebars");
+//not able to acces Data.taskName etc in edit
+const Handlebars = require("handlebars");
 
 //set a port
 const PORT = 3000 || process.env.PORT;
+const {
+  allowInsecurePrototypeAccess,
+} = require("@handlebars/allow-prototype-access");
 
 //load mongoose
 mongoose.connect(config.db, {
@@ -24,17 +29,24 @@ db.once("open", function () {
 //start app
 const app = express();
 
-//with no problems with handlebars - do not use it.
-// const {
-//   allowInsecurePrototypeAccess,
-// } = require("@handlebars/allow-prototype->access");
-
 //allow bodyParser to recognize a body
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+// due toproblems with handlebars - better do not use it in case client is able to create bhs templates.
+//leave this:
+// app.engine(".hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
+// app.set("view engine", ".hbs");
+
 //load handlebars
-app.engine(".hbs", exphbs({ defaultLayout: "main", extname: ".hbs" }));
+app.engine(
+  ".hbs",
+  exphbs({
+    defaultLayout: "main",
+    extname: ".hbs",
+    handlebars: allowInsecurePrototypeAccess(Handlebars),
+  })
+);
 app.set("view engine", ".hbs");
 
 //login data
@@ -42,6 +54,7 @@ app.use(morgan("dev"));
 
 //Routes
 app.use("/", require("./routes/index"));
-app.use("/", require("./routes/tasks"));
+app.use("/tasks", require("./routes/tasks"));
+app.use("/edit", require("./routes/edit"));
 
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`));

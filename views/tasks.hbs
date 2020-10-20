@@ -4,6 +4,8 @@
         <th>Task Name</th>
         <th>Task Author</th>
         <th>Task Body</th>
+        <th>Status</th>
+        <th>Edit</th>
         
     </tr>
 </thead>
@@ -15,6 +17,8 @@
     <td>{{taskAuthor}}</td>
     <td>{{taskBody}}</td>
     <td>{{status}}</td>
+    <td><a href="/edit/{{_id}}">Edit</a></td>
+    
 </tr>
 </tbody>
 {{/each }}

@@ -1,0 +1,30 @@
+<form action="/" method="put"> 
+    <label for="taskName" >Task name</label>
+    <input type="text" name ="taskName" value="{{Data.taskName}}" >
+
+
+  <div class="row">
+    <label for="taskAuthor">Task author</label>
+    <select id='taskAuthor' name ="taskAuthor" >
+        <option value="Marcin" selected>Marcin</option>
+        <option value="Oktawia">Oktawia</option>
+        <option value="Oliwia">Oliwia</option>
+        <option value="Michal">Michal</option>
+    <select/>
+    </div>
+  
+    <label for="taskBody" >Task body</label>
+    <input type="text" name ="taskBody" class="materialize-textarea" value="{{Data.taskBody}}">
+    <div class="row">
+    <select id='status' name ="status" >
+        <option value="todo!" selected>todo!</option>
+        <option value="ready">ready</option>
+       </div>
+    <select/>
+ 
+<button class="btn waves-effect waves-light teal lighten-2  white-text" type="submit"> save</button>
+</form>
+
+    
+ 
+
