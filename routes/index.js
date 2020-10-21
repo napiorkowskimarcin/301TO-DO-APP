@@ -3,9 +3,14 @@ const Task = require("../models/Task");
 const router = express.Router();
 
 router.get("/", (req, res) => {
-  res.render("index", {
-    layout: "main",
-  });
+  try {
+    res.render("index", {
+      layout: "main",
+    });
+  } catch (error) {
+    console.error(error);
+    res.render("error/500", { layout: "main" });
+  }
 });
 
 router.post("/", (req, res) => {

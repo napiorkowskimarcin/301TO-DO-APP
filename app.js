@@ -61,6 +61,7 @@ app.use(morgan("dev"));
 app.use("/", require("./routes/index"));
 app.use("/tasks", require("./routes/tasks"));
 app.use("/edit", require("./routes/edit"));
+app.use("/delete", require("./routes/delete"));
 
 //start listening
 app.listen(PORT, () => console.log(`Server has started on: ${PORT}`));

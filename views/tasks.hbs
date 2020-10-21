@@ -19,7 +19,7 @@
     <td>{{taskBody}}</td>
     <td>{{status}}</td>
     <td><a href="/edit/{{_id}}">Edit</a></td>
-    <td><a href="/delete/{{_id}}">Delete</a></td>
+    <td> <form action="/delete/{{_id}}?_method=DELETE" method="POST"> <button type="submit" class="btn red">del</button></form></td>
     
 </tr>
 </tbody>
