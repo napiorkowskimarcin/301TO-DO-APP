@@ -13,9 +13,9 @@ router.get("/", async (req, res, next) => {
   }
 });
 
-router.delete("/delete/:id", async (req, res) => {
-  const data = await Task.findByIdAndDelete(req.params.id);
-  res.redirect("tasks", { layout: "main" });
-});
+// router.delete("/delete/:id", async (req, res) => {
+//   const data = await Task.findByIdAndDelete(req.params.id);
+//   res.redirect("success", { layout: "main" });
+// });
 
 module.exports = router;

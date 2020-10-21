@@ -1,5 +1,5 @@
-<form  method="post" action="/edit/{{Data._id}}"> 
-<input type="hidden" name="_method" value="PUT">
+<form  method="POST" action="/edit/{{Data._id}}?_method=PUT"> 
+
 
     <label for="taskName" >Task name</label>
     <input type="text" name ="taskName" value="{{Data.taskName}}" >
@@ -16,7 +16,7 @@
     </div>
   
     <label for="taskBody" >Task body</label>
-    <input type="text" name ="taskBody" class="materialize-textarea" value="{{Data.taskBody}}">
+    <textarea type="text" name ="taskBody" class="materialize-textarea" >{{Data.taskBody}}</textarea>
     <div class="row">
     <select id='status' name ="status" >
         <option value="todo!" selected>todo!</option>

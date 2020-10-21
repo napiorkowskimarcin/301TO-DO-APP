@@ -16,8 +16,10 @@ router.get("/:id", async (req, res) => {
 //Update the data with method-override
 
 router.put("/:id", async (req, res) => {
+  const Data = req.body;
+  console.log(Data);
   await Task.findByIdAndUpdate(req.params.id, req.body);
-  return res.render("tasks", { layout: "main" });
+  return res.render("success", { layout: "main", Data });
 });
 
 module.exports = router;

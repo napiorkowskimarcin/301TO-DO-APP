@@ -10,7 +10,7 @@ const Handlebars = require("handlebars");
 const methodOverride = require("method-override");
 
 //set a port
-const PORT = 3000 || process.env.PORT;
+const PORT = process.env.PORT || 3000;
 const {
   allowInsecurePrototypeAccess,
 } = require("@handlebars/allow-prototype-access");
@@ -19,6 +19,7 @@ const {
 mongoose.connect(config.db, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  useFindAndModify: false,
 });
 //set a mongoose connection - catch errors.
 const db = mongoose.connection;
@@ -30,16 +31,8 @@ db.once("open", function () {
 //start app
 const app = express();
 
-app.use(
-  methodOverride(function (req, res) {
-    if (req.body && typeof req.body === "object" && "_method" in req.body) {
-      // look in urlencoded POST bodies and delete it
-      let method = req.body._method;
-      delete req.body._method;
-      return method;
-    }
-  })
-);
+//method override for put and delete
+app.use(methodOverride("_method"));
 
 //allow bodyParser to recognize a body
 app.use(bodyParser.urlencoded({ extended: false }));
